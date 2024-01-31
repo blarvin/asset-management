@@ -17,37 +17,46 @@ function AppHeader() {
     )
 }
 
-// HeaderContainer should be a flex row with the logo on the left and the text on the right
 const HeaderContainer = styled.div`
-    border: 1px solid orange;
-    width: 100;
-    flex-direction: row;
-    justify-content: fill-start;
-    display: flex;
-    padding: 10px;
-    margin: 10px;
+  border: 1px solid orange;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: start;
+  padding: 8px;
+  width: 100%;
+  margin-top: 10px;
 `;
 
 const Logo = styled.img`
-    border: 1px solid blue;
-    max-width: 30%;
-    max-height: 80%;
-`
+  border: 1px solid blue;
+  height: 100px;
+  fill: #ff0000;
+`;
 
 const TitleBlock = styled.div`
-    border: 1px solid blue;
-    margin: 30px;
-`
-const AppTitle = styled.h1`
-    font-size: 20px;
-    font-weight: 500;
-    color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  height: 100%;
+  border: 1px solid blue;
+  margin-left: 20px;
+`;
 
-`
+const AppTitle = styled.h1`
+  margin: 0;
+  border: 1px solid blue;
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+`;
+
 const CompanyName = styled.h2`
-    font-size: 50px;
-    font-weight: 500;
-    color: white;
-`
+  margin: 0;
+  border: 1px solid blue;
+  font-size: 30px;
+  font-weight: 500;
+  color: white;
+`;
 
 export default AppHeader;
