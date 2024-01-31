@@ -3,7 +3,7 @@ import styled from "styled-components";
 function AssetTreeNode(props) {
     return (
         <NodeContainer>
-            <h1>{props.asset.name}</h1>
+            <h1>{Object.keys(props.asset)[0]}</h1>
             <h1>ID:{props.asset.id}</h1>
             <p>{props.asset.description}</p>
             <p>Asset Type: {props.asset.type}</p>
