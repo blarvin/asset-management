@@ -5,6 +5,7 @@ const handler = async (event) => {
     const assets = [
         {
           Swingy_McSwingbridge: {
+            id: '001',
             specs: {
               description: 'Two lane Dutch swing road bridge on route A5713, crossing River Frent',
               type: 'Bridge',
@@ -48,6 +49,7 @@ const handler = async (event) => {
 
       {
         Leaky_Old_Locks: {
+          id: '002',
           specs: {
             description: 'manual and automated locks from pound 7 to pound 8 on River Stooge',
             type: 'Bridge',
@@ -98,6 +100,7 @@ const handler = async (event) => {
     return { statusCode: 200, body: JSON.stringify(assets) }
 
   } catch (error) {
+
     return { statusCode: 500, body: error.toString() }
   }
 }

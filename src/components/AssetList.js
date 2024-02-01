@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import AssetTreeNode from './AssetTreeNode';
-//import styled from'styled-components';
 
 function AssetList() {
     const [assets, setAssets] = useState([]);
@@ -34,18 +33,18 @@ function AssetList() {
         return <div>Error: {error}</div>;
     }
 
-
-
     return (
         <React.Fragment>
-            { assets.map(asset => (
-                <AssetTreeNode key={asset.id} asset = {asset}> </AssetTreeNode>
-            ))
-        }
+            {assets.map((asset, index) => {
+                // Assuming each asset is an object with a single key-value pair,
+                // where the key is the asset name and the value is the asset details.
+                const assetKey = Object.keys(asset)[0];
+                return (
+                    <AssetTreeNode key={asset[assetKey].id} data={asset} />
+                );
+            })}
         </React.Fragment>
     );
 }
-
-
 
 export default AssetList;
