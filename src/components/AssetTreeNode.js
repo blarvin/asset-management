@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-//import './AssetTreeNode.css'; // Make sure to create a corresponding CSS file
+import React, { useState } from "react";
+import styled from "styled-components";
 
 function AssetTreeNode({ data }) {
   const [isCurrent, setIsCurrent] = useState(false);
@@ -9,9 +9,6 @@ function AssetTreeNode({ data }) {
     setIsCurrent(!isCurrent);
   };
 
-  // Assuming 'data' is an object where the key is the asset name and the value is the asset details
-  // Example: { "Asset_Name_One": { id: '001', specs: {...}, ... } }
-  // Get the first key from the data object to use as the node name
   const nodeName = Object.keys(data)[0];
 
   // Check if data only has one key, otherwise throw error
@@ -22,14 +19,19 @@ function AssetTreeNode({ data }) {
   const assetDetails = data[nodeName];
 
   // Check if the asset has children (other keys besides 'id' and 'specs')
-  const childrenKeys = Object.keys(assetDetails).filter(key => key !== 'id' && key !== 'specs');
+  const childrenKeys = Object.keys(assetDetails).filter(
+    (key) => key !== "id" && key !== "specs"
+  );
   const hasChildren = childrenKeys.length > 0;
 
   return (
-    <div className={`asset-tree-node ${isCurrent ? 'current' : 'card'}`} onClick={toggleCurrentState}>
+    <div
+      className={`asset-tree-node ${isCurrent ? "current" : "card"}`}
+      onClick={toggleCurrentState}
+    >
       {isCurrent ? (
         // State B: 'current' maximized view
-        <div className="current-view">
+        <NodeCurrent>
           <div className="image-carousel">
             {/* Image carousel for the current asset */}
           </div>
@@ -37,38 +39,43 @@ function AssetTreeNode({ data }) {
             {/* More detailed information about the asset */}
             <p>{nodeName}</p>
             {/* Render additional details from specs */}
-            {assetDetails.specs && Object.entries(assetDetails.specs).map(([key, value]) => (
-              <p key={key}>{`${key}: ${value}`}</p>
-            ))}
+            {assetDetails.specs &&
+              Object.entries(assetDetails.specs).map(([key, value]) => (
+                <p key={key}>{`${key}: ${value}`}</p>
+              ))}
           </div>
           {hasChildren && (
             <div className="children">
               {childrenKeys.map((childKey) => (
-                <AssetTreeNode key={assetDetails[childKey].id} data={{ [childKey]: assetDetails[childKey] }} />
+                <AssetTreeNode data={{ [childKey]: assetDetails[childKey] }} />
               ))}
             </div>
           )}
-        </div>
+        </NodeCurrent>
       ) : (
         // State A: 'card' view
-        <div className="card-view">
+        <NodeCard className="card-view">
           <p>{nodeName}</p>
           {/* Summary information about the asset */}
-        </div>
+        </NodeCard>
       )}
     </div>
   );
 }
 
+const NodeCurrent = styled.div`
+  border: 1px solid yellow;
+  background-color: grey;
+`;
+const NodeCard = styled.div`
+  border: 1px solid red;
+  padding: 8px;
+  margin: 8px;
+  background-color: lightgrey;
+`;
+
 export default AssetTreeNode;
 
-
-
-  
-  
-  
-
-  
 // .asset-tree-node.card {
 // /* Styling for card view */
 // }
@@ -88,8 +95,6 @@ export default AssetTreeNode;
 //     )
 // }
 
-
-
 // const NodeContainer = styled.div`
 //     border: 1px solid green;
 //     width: 100%;
@@ -99,4 +104,3 @@ export default AssetTreeNode;
 // `
 
 // export default AssetTreeNode;
-

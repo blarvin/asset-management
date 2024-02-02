@@ -5,7 +5,7 @@ import logo from '../logo.svg';
 
 function AppHeader() {
     return (
-        <HeaderContainer>
+        <StyledHeaderContainer>
 
             <Logo src={logo}/>
             <TitleBlock>
@@ -13,11 +13,11 @@ function AppHeader() {
                 <AppTitle>Asset Management</AppTitle>
             </TitleBlock>
             
-        </HeaderContainer>  
+        </StyledHeaderContainer>  
     )
 }
 
-const HeaderContainer = styled.div`
+const StyledHeaderContainer = styled.div`
   border: 1px solid orange;
   display: flex;
   flex-direction: row;
